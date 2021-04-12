@@ -1,0 +1,30 @@
+{% extends 'tickets/base.html' %}
+
+{% block content %}
+<h2>list of tickets</h2>
+<hr>
+<table class="table">
+<a class="btn btn-primary" href="{% url 'ticket_create' %}">Create ticket</a>
+<hr>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Employee(s)</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for ticket in tickets %}
+    <tr>
+      <th scope="row">{{ticket.id}}</th>
+      <td>{{ticket.subject}}</td>
+      <td>{{ticket.employee}}</td>
+      <td>{{ticket.status}}</td>
+      <td><a>add note </a><a> view </a><a href="{% url 'ticket_update' ticket.id %}"> edit </a><a href="{% url 'ticket_delete' ticket.id %}"> delete </a></td>
+    </tr>  
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

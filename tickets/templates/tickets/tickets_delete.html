@@ -1,0 +1,14 @@
+{% extends 'tickets/base.html' %}
+
+{% block content %}
+
+<p>Are you sure you want to delete ticket: "{{ticket.id}}"?</p>
+
+<form action="{% url 'ticket_delete' ticket.id %}" method="POST">
+    {% csrf_token %}
+    <a class="btn btn-primary" href="{% url 'ticket_list' %}">Cancel</a>
+
+    <input class="btn btn-danger" type="submit" value="Delete">
+
+</form>
+{% endblock content %}
