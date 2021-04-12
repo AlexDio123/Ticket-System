@@ -1,5 +1,10 @@
 {% extends 'employee/base.html' %}
+
+{% block content %}
 <form action="" method='POST'>
-{{form.as_p}}
-<input type="submit">
+    {% csrf_token %}
+    {{form.as_p}}
+    <a class="btn btn-danger">Cancel</a>
+    <input type="submit"  class="btn btn-primary" value="Create">
 </form>
+{% endblock content %}

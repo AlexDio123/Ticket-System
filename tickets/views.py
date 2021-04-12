@@ -14,7 +14,6 @@ def create_ticket(request):
     form = TicketForm()
 
     if request.method == "POST":
-        print(request.POST)
         form = TicketForm(request.POST)
         if form.is_valid():
             form.save()
