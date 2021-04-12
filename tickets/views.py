@@ -45,3 +45,7 @@ def delete_ticket(request, pk):
     context ={'ticket':ticket}
     return render(request, 'tickets/tickets_delete.html', context)
 
+def info_ticket(request, pk):
+    ticket = Ticket.objects.get(id=pk)
+    context={"ticket":ticket}
+    return render(request, 'tickets/tickets_info.html', context)

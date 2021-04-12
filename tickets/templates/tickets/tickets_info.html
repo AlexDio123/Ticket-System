@@ -1,0 +1,23 @@
+{% extends 'tickets/base.html' %}
+
+{% block content %}
+
+<hr>
+<strong>Ticket #</strong>{{ticket.id}}
+<hr>
+
+<a class="btn btn-info">Edit</a>   <a class="btn btn-danger">Delete</a>
+
+<br>
+<strong>Ticket #:</strong> {{ticket.id}}
+<br>
+
+<strong>Subject:</strong> {{ticket.subject}}
+<br>
+<strong>Date:</strong> {{ticket.date}}
+<br>
+<strong>Description:</strong> 
+<br>
+{{ticket.description}}
+
+{% endblock content %}

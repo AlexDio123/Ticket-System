@@ -19,10 +19,10 @@
   {% for ticket in tickets %}
     <tr>
       <th scope="row">{{ticket.id}}</th>
-      <td>{{ticket.subject}}</td>
+      <td><a href="{% url 'info_ticket' ticket.id %}">{{ticket.subject}}</a></td>
       <td>{{ticket.employee}}</td>
       <td>{{ticket.status}}</td>
-      <td><a>add note </a><a> view </a><a href="{% url 'ticket_update' ticket.id %}"> edit </a><a href="{% url 'ticket_delete' ticket.id %}"> delete </a></td>
+      <td><a>add note </a><a href="{% url 'ticket_update' ticket.id %}"> edit </a><a href="{% url 'ticket_delete' ticket.id %}"> delete </a></td>
     </tr>  
   {% endfor %}
   </tbody>
