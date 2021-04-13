@@ -5,8 +5,9 @@ import datetime
 
 # Create your models here.
 STATUS_OPTIONS = (
-    ("OP", "OPEN"),
-    ("CL", "CLOSED")
+    ("OPEN", "OPEN"),
+    ("PENDING", "PENDING"),
+    ("CLOSED", "CLOSED")
 )
 
 class Ticket(models.Model):
