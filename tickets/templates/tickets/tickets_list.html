@@ -1,7 +1,7 @@
 {% extends 'tickets/base.html' %}
 
 {% block content %}
-<h2>list of tickets</h2>
+<h2>List of tickets</h2>
 <hr>
 <table class="table">
 <a class="btn btn-primary" href="{% url 'ticket_create' %}">Create ticket</a>
@@ -22,7 +22,7 @@
       <td><a href="{% url 'info_ticket' ticket.id %}">{{ticket.subject}}</a></td>
       <td>{{ticket.employee}}</td>
       <td>{{ticket.status}}</td>
-      <td><a href="{% url 'ticket_update' ticket.id %}"> edit </a><a href="{% url 'ticket_delete' ticket.id %}"> delete </a></td>
+      <td><a class="btn btn-info" href="{% url 'ticket_update' ticket.id %}"> edit </a><a class="btn btn-danger" href="{% url 'ticket_delete' ticket.id %}"> delete </a></td>
     </tr>  
   {% endfor %}
   </tbody>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .forms import TicketForm, CreateUserForm
 from .models import Ticket
@@ -39,12 +40,14 @@ def register_page(request):
     return render(request, 'tickets/register.html', context)
 
 # Home page
+@login_required(login_url='login')
 def index(request):
     tickets = Ticket.objects.all()
     context={"tickets":tickets}
     return render(request, 'tickets/tickets_list.html', context)
 
 # Create Ticket page
+@login_required(login_url='login')
 def create_ticket(request):
     form = TicketForm()
 
@@ -58,6 +61,7 @@ def create_ticket(request):
     return render(request, "tickets/tickets_add.html", context)
 
 # Update Ticket page
+@login_required(login_url='login')
 def update_ticket(request, pk):
 
     ticket = Ticket.objects.get(id=pk)
@@ -70,10 +74,11 @@ def update_ticket(request, pk):
             return redirect('/')
     
     
-    context = {"form":form,"notes":notes}
+    context = {"form":form}
     return render(request, "tickets/tickets_add.html", context)
 
 # Update Ticket Page
+@login_required(login_url='login')
 def delete_ticket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     if request.method == "POST":
@@ -83,6 +88,7 @@ def delete_ticket(request, pk):
     return render(request, 'tickets/tickets_delete.html', context)
 
 # Details Page for tickets
+@login_required(login_url='login')
 def info_ticket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     context={"ticket":ticket}
