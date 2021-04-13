@@ -9,15 +9,15 @@ Una vez instalados procure abrir el programa en la ruta donde se encuentra el ar
 
 Luego de instalar las dependencias, corra el comando **"python manage.py runserver"** esto le permitira correr la app y probarla.
 
-#Features
+# Features
 
 Guiandome de las vistas que puso de ejemplo la app cuenta con:
 
--Login y Registro
--Modulo de Tickets
--Formulario de registro de empleados
--Modulo de reportes
--Filtro de reporte con fechas y status
--Funcionalidad Crud para el modulo de tickets
--Validacion de formularios 
+- Login y Registro
+- Modulo de Tickets
+- Formulario de registro de empleados
+- Modulo de reportes
+- Filtro de reporte con fechas y status
+- Funcionalidad Crud para el modulo de tickets
+- Validacion de formularios 
 
