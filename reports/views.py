@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .filters import TicketFilter
 from tickets.models import Ticket
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
+@login_required(login_url='login')
 def reports_list(request):
     ticket_report = Ticket.objects.all()
     reports_form = TicketFilter(request.GET, queryset=ticket_report)

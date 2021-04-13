@@ -1,14 +1,19 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.forms.widgets import DateTimeInput
+
 from django.contrib.auth.models import User
 from .models import Ticket
 from employee.models import Employee
 
 
+
 class TicketForm(forms.ModelForm):
+
     class Meta:
         model = Ticket
         fields = ['subject','employee','description','status','start_date','end_date']
+
 
     def clean(self):
         cleaned_data = super().clean()
