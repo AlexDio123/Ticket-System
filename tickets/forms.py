@@ -1,5 +1,5 @@
-from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 from django.contrib.auth.models import User
 from .models import Ticket
 from employee.models import Employee
@@ -8,13 +8,7 @@ from employee.models import Employee
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['subject','employee','description','status']
-
-class TicketTimeEntryForm(forms.ModelForm):
-    class Meta:
-        model= Ticket
-        fields = ['start_date','end_date','notes']
-
+        fields = ['subject','employee','description','status','start_date','end_date']
 
     def clean(self):
         cleaned_data = super().clean()
@@ -23,10 +17,11 @@ class TicketTimeEntryForm(forms.ModelForm):
         if end_date < start_date:
             raise forms.ValidationError("End date should be greater than start date.")
 
-class RegisterUserForm(UserCreationForm):
+
+class CreateUserForm(UserCreationForm):
     class Meta:
-        model=User
-        fields = ['username','email','password1', 'password2']
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 
     

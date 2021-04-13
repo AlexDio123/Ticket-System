@@ -9,6 +9,6 @@ def create_employee(request):
         form = EmployeeForm(request.POST)
         if form.is_valid:
             form.save()
-            return redirect('/tickets/')
+            return redirect('/')
     context = {"form":form}
     return render(request, 'employee/add_form.html', context)

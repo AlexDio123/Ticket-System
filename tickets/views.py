@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from .forms import TicketForm, RegisterUserForm
+from django.contrib import messages
+
+from .forms import TicketForm, CreateUserForm
 from .models import Ticket
 # Create your views here.
 
@@ -22,11 +25,17 @@ def logout_page(request):
 
 #Register Page
 def register_page(request):
-    form = RegisterUserForm()
+    form = CreateUserForm()
     if request.method == "POST":
-        if form.is_valid:
-            form.save()
-    context={'form':form}
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            messages.success(request, "Account was created for " + username)
+            return redirect('login')
+
+    context = {'form': form}
     return render(request, 'tickets/register.html', context)
 
 # Home page
@@ -43,7 +52,7 @@ def create_ticket(request):
         form = TicketForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/tickets/')
+            return redirect('/')
 
     context = {"form":form,}
     return render(request, "tickets/tickets_add.html", context)
@@ -58,9 +67,10 @@ def update_ticket(request, pk):
         form = TicketForm(request.POST, instance=ticket)
         if form.is_valid():
             form.save()
-            return redirect('/tickets/')
-
-    context = {"form":form,}
+            return redirect('/')
+    
+    
+    context = {"form":form,"notes":notes}
     return render(request, "tickets/tickets_add.html", context)
 
 # Update Ticket Page
@@ -68,7 +78,7 @@ def delete_ticket(request, pk):
     ticket = Ticket.objects.get(id=pk)
     if request.method == "POST":
         ticket.delete()
-        return redirect('/tickets/')
+        return redirect('/')
     context ={'ticket':ticket}
     return render(request, 'tickets/tickets_delete.html', context)
 
