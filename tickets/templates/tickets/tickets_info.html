@@ -6,7 +6,7 @@
 <strong>Ticket #</strong>{{ticket.id}}
 <hr>
 
-<a class="btn btn-info">Edit</a>   <a class="btn btn-danger">Delete</a>
+<a class="btn btn-info" href="{% url 'ticket_update' ticket.id %}" ticket.id>Edit</a>   <a class="btn btn-danger" href="{% url 'ticket_delete' ticket.id %}">Delete</a>
 
 <br>
 <strong>Ticket #:</strong> {{ticket.id}}
